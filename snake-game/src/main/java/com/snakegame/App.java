@@ -1,7 +1,6 @@
 package com.snakegame;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class App {
 
@@ -20,8 +19,6 @@ public class App {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-
         spawnApple();
 
         while (true) {
@@ -29,31 +26,8 @@ public class App {
             printBoard();
 
             System.out.println("Score: " + score);
-            System.out.println("Move (W/A/S/D): ");
 
-            char move = sc.next().toUpperCase().charAt(0);
-
-            switch (move) {
-
-                case 'W':
-                    snakeY--;
-                    break;
-
-                case 'S':
-                    snakeY++;
-                    break;
-
-                case 'A':
-                    snakeX--;
-                    break;
-
-                case 'D':
-                    snakeX++;
-                    break;
-
-                default:
-                    System.out.println("Invalid move");
-            }
+            snakeX++;
 
             if (snakeX == appleX && snakeY == appleY) {
 
@@ -67,9 +41,16 @@ public class App {
                 System.out.println("Final Score: " + score);
                 break;
             }
-        }
 
-        sc.close();
+            try {
+
+                Thread.sleep(1000);
+
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+            }
+        }
     }
 
     static void spawnApple() {
@@ -102,5 +83,7 @@ public class App {
 
             System.out.println();
         }
+
+        System.out.println();
     }
 }
